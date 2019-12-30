@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  devise_for :users, :controllers => {:registration => "user/registrations"}
+  devise_for :users, :controllers => {:registrations => "user/registrations"}
   root 'welcome#index'
 
   get 'my_protfolio', to: 'users#my_portfolio'
