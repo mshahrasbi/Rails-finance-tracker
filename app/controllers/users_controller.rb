@@ -10,4 +10,8 @@ class UsersController < ApplicationController
         @friendships = current_user.friends
     end
 
+    def search
+
+    end
+
 end
