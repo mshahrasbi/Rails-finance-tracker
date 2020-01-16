@@ -16,12 +16,17 @@ class UsersController < ApplicationController
             flash.now[:danger] = "You have entered an empty search string"
         else
             @users = User.search(params[:search_param])
-            flash.now[:danger] = "No users match this search criteria" if @user.blank?
+            @users = current_user.except_current_user(@users)
+            flash.now[:danger] = "No users match this search criteria" if @users.blank?
         end        
         # render json: @users
         respond_to do |format|
             format.js { render partial: 'friends/result' } 
         end
     end
+
+    def add_friend
+
+    end 
 
 end

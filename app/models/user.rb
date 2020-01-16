@@ -30,6 +30,15 @@ class User < ApplicationRecord
     under_stock_limit? && !stock_already_added?(ticker_symbol)
   end
 
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
+  end
+
+  def not_friends_with?(friend_id)
+    friendships.where(friend_id: friend_id).count < 1
+  end
+
+  # class level methods
   def self.search(param) 
     param.strip!
     param.downcase!
